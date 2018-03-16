@@ -19,7 +19,7 @@
 #import "BYPostArticleBaseController.h"
 
 #import "MBProgressHUD+MJ.h"
-
+#import "WebViewController.h"
 
 @interface BYMsgDetailController () <UITableViewDataSource, UITableViewDelegate, BYArticleCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -70,7 +70,9 @@
 //点击了链接
 - (void)cellDidClickUrl:(NSString *)urlStr{
     //打开浏览器
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+    WebViewController *vc = [[WebViewController alloc] init];
+    vc.url = [NSURL URLWithString:urlStr];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //点击了用户

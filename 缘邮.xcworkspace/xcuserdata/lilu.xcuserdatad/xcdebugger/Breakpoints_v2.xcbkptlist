@@ -33,6 +33,53 @@
             endingLineNumber = "183"
             landmarkName = "-toLogin:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__29-[BYOAuthController toLogin:]_block_invoke.264"
+                  moduleName = "&#x7f18;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lilu/Desktop/GitHub/MyGitHub/BYRClient/%E7%BC%98%E9%82%AE/Classes/OAuth(%E6%8E%88%E6%9D%83)/Controller/BYOAuthController.m"
+                  timestampString = "542890612.847307"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
+                  offsetFromSymbolStart = "204">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.267"
+                  moduleName = "&#x7f18;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lilu/Desktop/GitHub/MyGitHub/BYRClient/%E7%BC%98%E9%82%AE/Classes/OAuth(%E6%8E%88%E6%9D%83)/Controller/BYOAuthController.m"
+                  timestampString = "542890612.849666"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.268"
+                  moduleName = "&#x7f18;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lilu/Desktop/GitHub/MyGitHub/BYRClient/%E7%BC%98%E9%82%AE/Classes/OAuth(%E6%8E%88%E6%9D%83)/Controller/BYOAuthController.m"
+                  timestampString = "542890612.851766"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -49,6 +96,38 @@
             endingLineNumber = "172"
             landmarkName = "-toLogin:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__29-[BYOAuthController toLogin:]_block_invoke"
+                  moduleName = "&#x7f18;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lilu/Desktop/GitHub/MyGitHub/BYRClient/%E7%BC%98%E9%82%AE/Classes/OAuth(%E6%8E%88%E6%9D%83)/Controller/BYOAuthController.m"
+                  timestampString = "542890612.856759"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "172"
+                  endingLineNumber = "172"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__29-[BYOAuthController toLogin:]_block_invoke_2"
+                  moduleName = "&#x7f18;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lilu/Desktop/GitHub/MyGitHub/BYRClient/%E7%BC%98%E9%82%AE/Classes/OAuth(%E6%8E%88%E6%9D%83)/Controller/BYOAuthController.m"
+                  timestampString = "542890612.8585989"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "172"
+                  endingLineNumber = "172"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

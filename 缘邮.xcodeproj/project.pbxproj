@@ -104,6 +104,7 @@
 		2C1420A61EE807C50060BEB4 /* index_ic_BackArrow_day_night@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1420A21EE807C50060BEB4 /* index_ic_BackArrow_day_night@2x.png */; };
 		2C1420A71EE807C50060BEB4 /* index_ic_BackArrow_day_night@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1420A31EE807C50060BEB4 /* index_ic_BackArrow_day_night@3x.png */; };
 		2C1AD81A1C7DE19E000847CF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1AD8191C7DE19E000847CF /* libz.tbd */; };
+		2C377A11205BCE6000962CDA /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C377A10205BCE6000962CDA /* WebViewController.m */; };
 		2C39E0B51C81A5FD0095B31B /* BYHotTopicFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C39E0B41C81A5FD0095B31B /* BYHotTopicFrame.m */; };
 		2C39E0B81C81A81B0095B31B /* BYHotTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C39E0B71C81A81B0095B31B /* BYHotTopicCell.m */; };
 		2C39E0C21C81B9220095B31B /* BYCollectionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C39E0C11C81B9220095B31B /* BYCollectionTool.m */; };
@@ -773,6 +774,8 @@
 		2C1420A21EE807C50060BEB4 /* index_ic_BackArrow_day_night@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "index_ic_BackArrow_day_night@2x.png"; sourceTree = "<group>"; };
 		2C1420A31EE807C50060BEB4 /* index_ic_BackArrow_day_night@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "index_ic_BackArrow_day_night@3x.png"; sourceTree = "<group>"; };
 		2C1AD8191C7DE19E000847CF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		2C377A0F205BCE6000962CDA /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		2C377A10205BCE6000962CDA /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		2C39E0B31C81A5FD0095B31B /* BYHotTopicFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYHotTopicFrame.h; sourceTree = "<group>"; };
 		2C39E0B41C81A5FD0095B31B /* BYHotTopicFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BYHotTopicFrame.m; sourceTree = "<group>"; };
 		2C39E0B61C81A81B0095B31B /* BYHotTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYHotTopicCell.h; sourceTree = "<group>"; };
@@ -1980,6 +1983,8 @@
 		2CAD89BF1C11683B001ED7E7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2C377A0F205BCE6000962CDA /* WebViewController.h */,
+				2C377A10205BCE6000962CDA /* WebViewController.m */,
 				2CAD89C01C11683B001ED7E7 /* BYSectionController.h */,
 				2CAD89C11C11683B001ED7E7 /* BYSectionController.m */,
 				2CAD89D81C116A50001ED7E7 /* BYBoardController.h */,
@@ -4096,6 +4101,7 @@
 				0409A4251DBF602F00655A0C /* UIControl+Night.m in Sources */,
 				2C7DE8241C80469D00BC8092 /* YYTextRubyAnnotation.m in Sources */,
 				2CED97051C79E35D0010BFF4 /* WUEmoticonsKeyboardKeyItemGroupView.m in Sources */,
+				2C377A11205BCE6000962CDA /* WebViewController.m in Sources */,
 				2CA0EFE01EE79ECE00AC85C6 /* UIButton+Extensions.m in Sources */,
 				2C7DE82E1C80469D00BC8092 /* YYLabel.m in Sources */,
 				2C39E0D41C81C8700095B31B /* BYCollection.m in Sources */,

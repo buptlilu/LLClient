@@ -40,6 +40,7 @@
 #import "UMSocial.h"
 #import "AudioStreamer.h"
 #import "UIButton+CZ.h"
+#import "WebViewController.h"
 
 @interface BYArticleController ()<UITableViewDataSource, UITableViewDelegate, BYArticleToolBarDelegate, UIPickerViewDataSource, UIPickerViewDelegate, BYArticleCellDelegate, UIActionSheetDelegate, MWPhotoBrowserDelegate, UMSocialUIDelegate, UINavigationControllerDelegate>
 //解析后返回的MVVM模型数组
@@ -770,7 +771,9 @@
 //点击了链接
 - (void)cellDidClickUrl:(NSString *)urlStr{
     //打开浏览器
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+    WebViewController *vc = [[WebViewController alloc] init];
+    vc.url = [NSURL URLWithString:urlStr];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //点击了用户
