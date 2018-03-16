@@ -1,0 +1,115 @@
+//
+//  缘邮.pch
+//  缘邮
+//
+//  Created by LiLu on 15/11/26.
+//  Copyright (c) 2015年 lilu. All rights reserved.
+//
+
+#ifdef __OBJC__
+
+#import "UIView+Frame.h"
+#import "UIView+BY.h"
+#import "UIImage+Image.h"
+#import "UILabel+BY.h"
+#import "XUtil.h"
+#import "ACMacros.h"
+#import "Masonry.h"
+#import "DKViewController.h"
+#import "DKNightVersion.h"
+#import "RDVTabBarController.h"
+
+//URL网络相关
+#define BYBaseURL @"http://bbs.byr.cn/open"
+#define BYAuthorizeBaseUrl @"http:bbs.byr.cn/oauth2/authorize"
+#define BYClient_id        @"dcaea32813eca7e0a547728b73ab060a"
+#define BYRedirect_uri     @"http://bbs.byr.cn/oauth2/callback"
+#define BYResponse_type    @"code"
+#define BYState            @"35f7879b051b0bcb77a015977f5aeeeb"
+#define BYAppleid          @"xuyang2324@hotmail.com"
+#define BYBundleid         @"lilu.byriOSClientByLilu"
+#define BYClient_secret    @"ce9bf0c1796adf3f3136a5eb0c54c059"
+#define BYGrant_type       @"authorization_code"
+#define BYKeyWindow [UIApplication sharedApplication].keyWindow
+
+//cell相关
+#define BYBoardArticleMargin 10
+#define BYHotTopicOffset 25
+#define BYScreenW [UIScreen mainScreen].bounds.size.width
+#define BYBoardArticleUserNameFont [UIFont systemFontOfSize:12]
+#define BYBoardArticleTimeFont [UIFont systemFontOfSize:12]
+#define BYBoardArticleTimeMarginToRight  BYScreenW / 4
+#define BYBoardArticleReplyCountFont [UIFont systemFontOfSize:12]
+#define BYArticleBoardFont [UIFont systemFontOfSize:12]
+#define BYBoardArticleTitleFont [UIFont systemFontOfSize:15]
+
+//导航栏标题字体
+#define NavBarTitleFont  [UIFont systemFontOfSize:17]
+
+#define BYArticlePositionFont [UIFont systemFontOfSize:12]
+#define BYArticleContentFont [UIFont systemFontOfSize:16]
+
+//我的模块里第一个cell的字体
+#define BYMeInfoUserNameFont [UIFont systemFontOfSize:18]
+#define BYMeInfoUserIdFont [UIFont systemFontOfSize:14]
+
+//邮件相关的字体
+#define BYMailContentFont [UIFont systemFontOfSize:15]
+
+//tableView标题字体
+#define BYTableViewTitleFont [UIFont systemFontOfSize:15]
+
+//男女ID的姓名颜色
+#define BYMaleNameColor [UIColor blueColor]
+#define BYFemaleNameColor [UIColor colorWithPatternImage:[UIImage imageNamed:@"pink"]]
+#define BYUnknownSexNameColor [UIColor blackColor]
+
+//正则匹配相关的key
+#define BYAttachmentImageNumberKey  @"BYAttachmentImageNumber"
+#define BYAttachmentMusicNumberKey  @"BYAttachmentMusicNumber"
+#define BYAttachmentMusicTotalKey  @"BYAttachmentMusicTotal"
+#define BYAttachMentMusicLocationKey @"BYAttachmentMusicLocation"
+
+#define BYTextFontSize     @"BYTextFontSize"
+
+#define BYUserIdKey     @"BYUserId"
+#define BYSizeKey       @"BYSize"
+#define BYColorKey      @"BYColor"
+#define BYHttpKey       @"BYHttp"
+#define BYSourceUrlKey     @"BYSourceUrl"
+#define BYSourceTextKey     @"BYSourceText"
+#define BYPDFUrlKey        @"BYPDFUrl"
+
+//是否自动推送消息
+#define BYIsAutoPushNewMsgCountKey @"BYIsAutoPushNewMsgCount"
+
+//weak self
+#ifndef weakify
+#if DEBUG
+#if __has_feature(objc_arc)
+#define weakify(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
+#else
+#define weakify(object) autoreleasepool{} __block __typeof__(object) block##_##object = object;
+#endif
+#else
+#if __has_feature(objc_arc)
+#define weakify(object) try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
+#else
+#define weakify(object) try{} @finally{} {} __block __typeof__(object) block##_##object = object;
+#endif
+#endif
+#endif
+
+// ...表示宏定义的可变参数
+// __VA_ARGS__:表示函数里面的可变参数
+#ifdef DEBUG // 调试
+
+#define BYLog(...) NSLog(__VA_ARGS__)
+
+#else // 发布
+
+#define BYLog(...)
+
+#endif
+
+#endif
