@@ -85,7 +85,6 @@
 		2C101F15205B806D00C8EA09 /* timeline_icon_unlike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C101F13205B806D00C8EA09 /* timeline_icon_unlike@3x.png */; };
 		2C14206A1EE7E0A30060BEB4 /* UIImageView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1420691EE7E0A30060BEB4 /* UIImageView+Extensions.m */; };
 		2C14206D1EE7E2920060BEB4 /* YDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C14206C1EE7E2920060BEB4 /* YDNavigationController.m */; };
-		2C14208B1EE7F32A0060BEB4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1420711EE7F32A0060BEB4 /* Info.plist */; };
 		2C14208C1EE7F32A0060BEB4 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1420731EE7F32A0060BEB4 /* MASCompositeConstraint.m */; };
 		2C14208D1EE7F32A0060BEB4 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1420761EE7F32A0060BEB4 /* MASConstraint.m */; };
 		2C14208E1EE7F32A0060BEB4 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1420781EE7F32A0060BEB4 /* MASConstraintMaker.m */; };
@@ -737,7 +736,6 @@
 		2C1420691EE7E0A30060BEB4 /* UIImageView+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Extensions.m"; sourceTree = "<group>"; };
 		2C14206B1EE7E2920060BEB4 /* YDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDNavigationController.h; sourceTree = "<group>"; };
 		2C14206C1EE7E2920060BEB4 /* YDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDNavigationController.m; sourceTree = "<group>"; };
-		2C1420711EE7F32A0060BEB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C1420721EE7F32A0060BEB4 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		2C1420731EE7F32A0060BEB4 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
 		2C1420741EE7F32A0060BEB4 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -1699,7 +1697,6 @@
 		2C1420701EE7F32A0060BEB4 /* Masonry */ = {
 			isa = PBXGroup;
 			children = (
-				2C1420711EE7F32A0060BEB4 /* Info.plist */,
 				2C1420721EE7F32A0060BEB4 /* MASCompositeConstraint.h */,
 				2C1420731EE7F32A0060BEB4 /* MASCompositeConstraint.m */,
 				2C1420741EE7F32A0060BEB4 /* MASConstraint+Private.h */,
@@ -3674,7 +3671,6 @@
 				2CED91A11C7713930010BFF4 /* [em52].gif in Resources */,
 				2CED96D81C79E3300010BFF4 /* keyboard_emotion@2x.png in Resources */,
 				2CD22A071C7FEED40047F3B0 /* chooser-moment-button@2x.png in Resources */,
-				2C14208B1EE7F32A0060BEB4 /* Info.plist in Resources */,
 				2CED91AF1C7713930010BFF4 /* [em65].gif in Resources */,
 				2CED918B1C7713930010BFF4 /* [em32].gif in Resources */,
 				2CED91F01C7713930010BFF4 /* [emb19].gif in Resources */,

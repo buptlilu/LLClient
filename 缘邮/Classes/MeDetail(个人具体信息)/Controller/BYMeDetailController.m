@@ -198,7 +198,11 @@
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
         [library writeImageDataToSavedPhotosAlbum:data metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
 //            BYLog(@"Success at %@", [assetURL path]);
-            [MBProgressHUD showSuccess:@"保存成功"];
+            if (error) {
+                [MBProgressHUD showError:@"保存失败,用户未授权"];
+            } else {
+                [MBProgressHUD showSuccess:@"保存成功"];
+            }
         }];
     }
 }
