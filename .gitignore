@@ -3,3 +3,6 @@
 .DS_Store
 *.xcuserdatad
 *.xcscmblueprint
+
+#CocoaPods
+Pods
