@@ -28,13 +28,13 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/lilu/LLMain.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '11.0'
 
-  s.source_files = 'LLMain/Classes/**/*'
-  s.static_framework = true
-  s.xcconfig = { 'DEFINES_MODULE' => 'YES' }
-  s.swift_version = '5.1'
-  s.requires_arc = true
+  s.source_files = ['LLMain/Classes/**/*']
+  #s.static_framework = true
+  #s.xcconfig = { 'DEFINES_MODULE' => 'YES' }
+  #s.swift_version = '5.1'
+  #s.requires_arc = true
   
   # s.resource_bundles = {
   #   'LLMain' => ['LLMain/Assets/*.png']
