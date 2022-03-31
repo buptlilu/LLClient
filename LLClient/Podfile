@@ -10,8 +10,9 @@ target 'LLClient' do
   pod 'Masonry'
   pod 'SnapKit', '~> 5.0.0'
   pod 'Kingfisher', '~> 7.0'
-  pod 'LLAccount', :path => './local_pods/LLAccount', :inhibit_warnings => false
-  pod 'LLMain', :path => './local_pods/LLMain', :inhibit_warnings => false
+  pod 'LLAccount', :path => './local_pods/LLAccount'
+  pod 'LLMain', :path => './local_pods/LLMain'
+  pod 'LLCommon', :path => './local_pods/LLCommon'
 
   target 'LLClientTests' do
     inherit! :search_paths
