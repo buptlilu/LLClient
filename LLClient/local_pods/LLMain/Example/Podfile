@@ -1,0 +1,6 @@
+use_frameworks!
+target 'LLMain_Tests' do
+  pod 'LLMain', :path => '../'
+  
+  
+end
