@@ -31,6 +31,10 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'LLMain/Classes/**/*'
+  s.static_framework = true
+  s.xcconfig = { 'DEFINES_MODULE' => 'YES' }
+  s.swift_version = '5.1'
+  s.requires_arc = true
   
   # s.resource_bundles = {
   #   'LLMain' => ['LLMain/Assets/*.png']

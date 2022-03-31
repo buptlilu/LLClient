@@ -1,5 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '12.0'
+inhibit_all_warnings!
 
 target 'LLClient' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -10,6 +11,7 @@ target 'LLClient' do
   pod 'SnapKit', '~> 5.0.0'
   pod 'Kingfisher', '~> 7.0'
   pod 'LLAccount', :path => './local_pods/LLAccount', :inhibit_warnings => false
+  pod 'LLMain', :path => './local_pods/LLMain', :inhibit_warnings => false
 
   target 'LLClientTests' do
     inherit! :search_paths
