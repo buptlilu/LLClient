@@ -1,13 +1,13 @@
 //
-//  BYRClientUITestsLaunchTests.swift
-//  BYRClientUITests
+//  LLClientUITestsLaunchTests.swift
+//  LLClientUITests
 //
-//  Created by lilu on 2022/3/30.
+//  Created by lilu on 2022/3/31.
 //
 
 import XCTest
 
-class BYRClientUITestsLaunchTests: XCTestCase {
+class LLClientUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
