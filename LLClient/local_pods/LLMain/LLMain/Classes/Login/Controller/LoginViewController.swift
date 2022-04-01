@@ -78,30 +78,12 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
         usernameView.inputTextField.resignFirstResponder()
         passwordView.inputTextField.resignFirstResponder()
         
-        let url = Keys.shared.OAuthURL
-        var params: [String: String] = [:]
-        params["appkey"] = "8b0d6c0b2ff8ef15c35c896435f0f337"
-        params["response_type"] = Keys.shared.Response_type
-        params["redirect_uri"] = Keys.shared.Redirect_uri
-        params["state"] = Keys.shared.State
-        params["scope"] = "/"
-        params["source"] = "1503026743-1"
-        params["username"] = usernameView.inputTextField.text?.data(using: .utf8)?.base64EncodedString()
-        params["password"] = passwordView.inputTextField.text?.data(using: .utf8)?.base64EncodedString()
-        
-        HttpClient.post(url: url, params: params) { success, data in
+        let req = Api.login.Request()
+        req.params["username"] = usernameView.inputTextField.text?.data(using: .utf8)?.base64EncodedString()
+        req.params["password"] = passwordView.inputTextField.text?.data(using: .utf8)?.base64EncodedString()
+        HttpClient.send(req: req) { success, response in
             if success {
-                
-                do {
-                    let response = try JSONDecoder().decode(LoginResponse.self, from: data!)
-                    Logger.info(response.access_token ?? "")
-                } catch {
-                    Logger.error(error.localizedDescription)
-                }
-                
-                self.view.toast("登录成功")
-            } else {
-                self.view.toast("密码错误或无网络")
+                response.data
             }
         }
     }

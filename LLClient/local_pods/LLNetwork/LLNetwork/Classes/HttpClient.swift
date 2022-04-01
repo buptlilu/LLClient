@@ -9,22 +9,15 @@ import Foundation
 import Alamofire
 
 public class HttpClient: NSObject {
-    public class func get(url: String, params: [String: Any]?, completeBlock: ((Bool,Data?) -> Void)? = nil) {
-        AF.request(url, method: .get, parameters: params).responseData { res in
-            if res.response?.statusCode == 200 && res.data != nil {
-                completeBlock?(true, res.data)
+    public class func send<ResponseType: HttpResponse>(req: HttpRequest<ResponseType>, completeBlock: ((Bool, ResponseType)->Void)?) {
+        AF.request(req.url, method: req.requestType.httpMethod(), parameters: req.params).responseData { afRes in
+            let res = req.initResponse()
+            res.httpResponseCode = afRes.response?.statusCode ?? 0
+            if afRes.response?.statusCode == 200 && afRes.data != nil {
+                res.parser(afRes.data!)
+                completeBlock?(true, res)
             } else {
-                completeBlock?(false, res.data)
-            }
-        }
-    }
-    
-    public class func post(url: String, params: [String: Any]?, completeBlock: ((Bool,Data?) -> Void)? = nil) {
-        AF.request(url, method: .post, parameters: params).responseData { res in
-            if res.response?.statusCode == 200 && res.data != nil {
-                completeBlock?(true, res.data)
-            } else {
-                completeBlock?(false, res.data)
+                completeBlock?(true, res)
             }
         }
     }
