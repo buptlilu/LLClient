@@ -17,7 +17,7 @@ public class HttpClient: NSObject {
                 res.parser(afRes.data!)
                 completeBlock?(true, res)
             } else {
-                completeBlock?(true, res)
+                completeBlock?(false, res)
             }
         }
     }
