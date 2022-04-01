@@ -19,12 +19,6 @@ public class Logger: NSObject {
         // add the destinations to SwiftyBeaver
         SwiftyBeaver.addDestination(console)
         SwiftyBeaver.addDestination(file)
-
-        SwiftyBeaver.verbose("not so important")  // prio 1, VERBOSE in silver
-        SwiftyBeaver.debug("something to debug")  // prio 2, DEBUG in green
-        SwiftyBeaver.info("a nice information")   // prio 3, INFO in blue
-        SwiftyBeaver.warning("oh no, that won’t be good")  // prio 4, WARNING in yellow
-        SwiftyBeaver.error("ouch, an error did occur!")  // prio 5, ERROR in red
     }
 
     public class func verbose(_ str: String) {

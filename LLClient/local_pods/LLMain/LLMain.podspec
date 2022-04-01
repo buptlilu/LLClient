@@ -46,5 +46,4 @@ TODO: Add long description of the pod here.
   s.dependency 'LLCommon'
   s.dependency 'LLNetwork'
   s.dependency 'SnapKit'
-  s.dependency 'Toast-Swift'
 end
