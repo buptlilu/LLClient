@@ -15,6 +15,7 @@ target 'LLClient' do
   pod 'LLMain', :path => './local_pods/LLMain'
   pod 'LLNetwork', :path => './local_pods/LLNetwork'
   pod 'LLCommon', :path => './local_pods/LLCommon'
+  pod 'LLLog', :path => './local_pods/LLLog'
 
   target 'LLClientTests' do
     inherit! :search_paths
