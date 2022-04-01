@@ -13,7 +13,7 @@ public class Keys: NSObject {
     public let AuthorizeBaseUrl = "https:bbs.byr.cn/oauth2/authorize"
     public let OAuthURL         = "https://bbs.byr.cn/oauth2/official"
     public let Client_id        = "dcaea32813eca7e0a547728b73ab060a"
-    public let Redirect_uri     = "https://bbs.byr.cn/oauth2/callback"
+    public let Redirect_uri     = "http://bbs.byr.cn/oauth2/callback"
     public let Response_type    = "code"
     public let State            = "35f7879b051b0bcb77a015977f5aeeeb"
     public let Appleid          = "xuyang2324@hotmail.com"

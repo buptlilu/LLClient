@@ -70,11 +70,40 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func login() {
+        guard let username = usernameView.inputTextField.text, let password = passwordView.inputTextField.text, username.count > 0, password.count > 0  else {
+            self.view.toast("请正确输入用户名和密码")
+            return
+        }
+        
         usernameView.inputTextField.resignFirstResponder()
         passwordView.inputTextField.resignFirstResponder()
         
         let url = Keys.shared.OAuthURL
-        var params = 
+        var params: [String: String] = [:]
+        params["appkey"] = "8b0d6c0b2ff8ef15c35c896435f0f337"
+        params["response_type"] = Keys.shared.Response_type
+        params["redirect_uri"] = Keys.shared.Redirect_uri
+        params["state"] = Keys.shared.State
+        params["scope"] = "/"
+        params["source"] = "1503026743-1"
+        params["username"] = usernameView.inputTextField.text?.data(using: .utf8)?.base64EncodedString()
+        params["password"] = passwordView.inputTextField.text?.data(using: .utf8)?.base64EncodedString()
+        
+        HttpClient.post(url: url, params: params) { success, data in
+            if success {
+                
+                do {
+                    let response = try JSONDecoder().decode(LoginResponse.self, from: data!)
+                    Logger.info(response.access_token ?? "")
+                } catch {
+                    Logger.error(error.localizedDescription)
+                }
+                
+                self.view.toast("登录成功")
+            } else {
+                self.view.toast("密码错误或无网络")
+            }
+        }
     }
     
     public func textFieldDidEndEditing(_ textField: UITextField) {
