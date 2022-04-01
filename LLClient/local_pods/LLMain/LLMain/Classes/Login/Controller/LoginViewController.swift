@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import SnapKit
 import LLCommon
+import LLNetwork
+import Toast_Swift
 
 public class LoginViewController: UIViewController, UITextFieldDelegate {
     public override func viewDidLoad() {
@@ -71,6 +73,8 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
     @objc func login() {
         usernameView.inputTextField.resignFirstResponder()
         passwordView.inputTextField.resignFirstResponder()
+        
+        self.view.makeToast("This is a piece of toast", duration: 2.0, position: .center)
     }
     
     public func textFieldDidEndEditing(_ textField: UITextField) {

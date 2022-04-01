@@ -7,11 +7,13 @@ target 'LLClient' do
   use_frameworks!
 
   # Pods for LLClient
-  pod 'Masonry'
+  pod 'Alamofire', '~> 5.5'
   pod 'SnapKit', '~> 5.0.0'
   pod 'Kingfisher', '~> 7.0'
+  pod 'Toast-Swift', '~> 5.0.1'
   pod 'LLAccount', :path => './local_pods/LLAccount'
   pod 'LLMain', :path => './local_pods/LLMain'
+  pod 'LLNetwork', :path => './local_pods/LLNetwork'
   pod 'LLCommon', :path => './local_pods/LLCommon'
 
   target 'LLClientTests' do
