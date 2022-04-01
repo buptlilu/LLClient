@@ -81,12 +81,19 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
         let req = Api.login.Request()
         req.params["username"] = usernameView.inputTextField.text?.data(using: .utf8)?.base64EncodedString()
         req.params["password"] = passwordView.inputTextField.text?.data(using: .utf8)?.base64EncodedString()
-        HttpClient.send(req: req) { success, response in
-            if let res = response.data, let token = res.access_token, let date = res.expires_in, token.count > 0 {
-                Logger.info("login success token:\(token)")
-                self.toast("登录成功!")
+        HttpClient.send(req: req) { [weak self] success, response in
+            guard let self = self else { return }
+            if let res = response.data {
+                if let token = res.access_token, let date = res.expires_in, token.count > 0 {
+                    Logger.info("login success token:\(token)")
+                    self.toast("登录成功")
+                } else if let msg = res.msg, msg.count > 0 {
+                    self.toast("\(msg)")
+                } else {
+                    self.toast("接口出错")
+                }
             } else {
-                self.toast("登录失败，密码错误或网络差")
+                self.toast("请检查网络")
             }
         }
     }
