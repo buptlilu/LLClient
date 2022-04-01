@@ -15,6 +15,7 @@ extension Api.login {
         override init() {
             super.init()
             url = Keys.shared.OAuthURL
+            requestType = .post
             params["appkey"] = "8b0d6c0b2ff8ef15c35c896435f0f337"
             params["response_type"] = Keys.shared.Response_type
             params["redirect_uri"] = Keys.shared.Redirect_uri

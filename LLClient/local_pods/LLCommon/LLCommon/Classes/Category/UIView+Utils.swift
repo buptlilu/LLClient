@@ -6,10 +6,7 @@
 //
 
 import Foundation
-import Toast_Swift
 
 extension UIView {
-    public func toast(_ message: String?) {
-        self.makeToast(message, duration: 2.0, position: .center)
-    }
+    
 }

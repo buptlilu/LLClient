@@ -71,7 +71,7 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @objc func login() {
         guard let username = usernameView.inputTextField.text, let password = passwordView.inputTextField.text, username.count > 0, password.count > 0  else {
-            self.view.toast("请正确输入用户名和密码")
+            self.toast("请正确输入用户名和密码")
             return
         }
         
@@ -82,8 +82,11 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
         req.params["username"] = usernameView.inputTextField.text?.data(using: .utf8)?.base64EncodedString()
         req.params["password"] = passwordView.inputTextField.text?.data(using: .utf8)?.base64EncodedString()
         HttpClient.send(req: req) { success, response in
-            if success {
-                response.data
+            if let res = response.data, let token = res.access_token, let date = res.expires_in, token.count > 0 {
+                Logger.info("login success token:\(token)")
+                self.toast("登录成功!")
+            } else {
+                self.toast("登录失败，密码错误或网络差")
             }
         }
     }
