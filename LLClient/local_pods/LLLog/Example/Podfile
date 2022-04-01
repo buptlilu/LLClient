@@ -1,6 +1,0 @@
-use_frameworks!
-target 'LLLog_Tests' do
-  pod 'LLLog', :path => '../'
-  
-  
-end
