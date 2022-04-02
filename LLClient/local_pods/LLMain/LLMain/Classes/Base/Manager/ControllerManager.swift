@@ -8,7 +8,6 @@
 import Foundation
 import LLAccount
 import LLCommon
-import RDVTabBarController
 import CoreData
 import UIKit
 
@@ -30,6 +29,7 @@ public class ControllerManager : NSObject {
         let meVc = YDNavigationController.init(rootViewController: MeViewController.init())
         
         let tabbarVc = RDVTabBarController.init()
+        tabbarVc.tabBar.setHeight(Keys.kBottomBarHeight)
         tabbarVc.viewControllers = [listVc, hotVc, collectVc, meVc]
         
         let imageNames = ["list", "hot", "collect", "me"]
@@ -47,8 +47,6 @@ public class ControllerManager : NSObject {
                 }
                 tabBarItem.title = titles[index]
                 tabBarItem.badgeBackgroundColor = .white
-                
-                
                 tabBarItem.selectedTitleAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 11), NSAttributedString.Key.foregroundColor: UIColor.theme]
                 tabBarItem.unselectedTitleAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 11), NSAttributedString.Key.foregroundColor: UIColor.init(hex: 0x999999)]
                 index += 1
@@ -56,6 +54,12 @@ public class ControllerManager : NSObject {
         }
         tabbarVc.tabBar.backgroundColor = .white
         tabbarVc.tabBar.backgroundView.backgroundColor = .white
+        let spaceView = UIView.spaceView()
+        tabbarVc.tabBar.backgroundView.addSubview(spaceView)
+        spaceView.snp.makeConstraints { make in
+            make.height.equalTo(0.5)
+            make.left.right.top.equalToSuperview()
+        }
         return tabbarVc
     }
     
