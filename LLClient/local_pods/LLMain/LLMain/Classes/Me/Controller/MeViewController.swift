@@ -7,6 +7,6 @@
 
 import Foundation
 
-class MeViewController: UIViewController {
+class MeViewController: RootBaseController {
     
 }

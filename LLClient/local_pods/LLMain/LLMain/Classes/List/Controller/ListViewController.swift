@@ -7,6 +7,17 @@
 
 import Foundation
 
-class ListViewController: UIViewController {
+class ListViewController: RootBaseController {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            let vc = UIViewController.init()
+            vc.view.backgroundColor = .red
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }

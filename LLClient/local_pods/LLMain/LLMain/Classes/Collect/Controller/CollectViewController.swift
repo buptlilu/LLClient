@@ -7,6 +7,6 @@
 
 import Foundation
 
-class CollectViewController: UIViewController {
+class CollectViewController: RootBaseController {
     
 }

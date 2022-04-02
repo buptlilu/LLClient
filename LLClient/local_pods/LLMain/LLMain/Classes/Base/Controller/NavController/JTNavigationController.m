@@ -58,7 +58,11 @@
         backButtonImage = [UIImage imageNamed:kDefaultBackImageName];
     }
     
-    viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton)];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setImage:backButtonImage forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(didTapBackButton) forControlEvents:UIControlEventTouchUpInside];
+    btn.frame = CGRectMake(0, 0, 23, 42);
+    viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 //    [self.navigationController pushViewController:viewController animated:animated];
     viewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:[JTWrapViewController wrapViewControllerWithViewController:viewController] animated:animated];

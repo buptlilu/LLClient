@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HotViewController: UIViewController {
+class HotViewController: RootBaseController {
     
 }
  
