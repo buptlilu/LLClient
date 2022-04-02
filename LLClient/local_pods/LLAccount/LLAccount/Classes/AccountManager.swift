@@ -29,53 +29,32 @@ public class AccountManager: NSObject {
         return nil
     }
     
-    public func saveAllAccounts() {
-        DispatchQueue.global().async {
-            if let path = self.accountFilePath()  {
-                var models = [Account].init()
-                for account in self.accounts {
-                    if account.value.isTokenValid() {
-                        models.append(account.value)
-                    }
-                }
-                do {
-                    let datasToWrite = try JSONEncoder().encode(models)
-                    try datasToWrite.write(to: path)
-                    self.loadAccounts()
-                } catch {
-                    Logger.error("fail to save accounts error:\(error)")
-                }
-            }
-        }
-    }
-    
     public func saveAccount(_ account: Account) {
         if !account.isTokenValid() {
             return
         }
         
         accounts[account.username] = account
-        saveAllAccounts()
+        
+        var models = [Account].init()
+        for account in accounts {
+            if account.value.isTokenValid() {
+                models.append(account.value)
+            }
+        }
+        Cache.shared.save(filePath: self.accountFilePath(), models: models)
     }
     
     public func loadAccounts() {
-        if let path = self.accountFilePath()  {
-            do {
-                if FileManager.default.fileExists(atPath: path.path) {
-                    let datas = try Data.init(contentsOf: path)
-                    let models = try JSONDecoder().decode([Account].self, from: datas)
-                    self.accounts.removeAll()
-                    for model in models {
-                        if model.isTokenValid() {
-                            self.accounts[model.username] = model
-                        }
+        Cache.shared.load(filePath: self.accountFilePath(), modelType: [Account].self) { success, models in
+            if success, let models = models {
+                self.accounts.removeAll()
+                for model in models {
+                    if model.isTokenValid() {
+                        self.accounts[model.username] = model
                     }
-                    self.logAccounts()
-                } else {
-                    Logger.info("account path not exist:\(path.path)")
                 }
-            } catch {
-                Logger.error("fail to load accounts error:\(error)")
+                self.logAccounts()
             }
         }
     }
