@@ -31,11 +31,6 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '12.0'
 
   s.source_files = 'LLAccount/Classes/**/*'
-
-  s.static_framework = true
-  s.xcconfig = { 'DEFINES_MODULE' => 'YES' }
-  s.swift_version = '5.1'
-  s.requires_arc = true
   
   # s.resource_bundles = {
   #   'LLAccount' => ['LLAccount/Assets/*.png']

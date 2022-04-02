@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import LLCommon
 import LLNetwork
+import LLAccount
 
 public class LoginViewController: UIViewController, UITextFieldDelegate {
     public override func viewDidLoad() {
@@ -79,13 +80,15 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordView.inputTextField.resignFirstResponder()
         
         let req = Api.login.Request()
-        req.params["username"] = usernameView.inputTextField.text?.data(using: .utf8)?.base64EncodedString()
-        req.params["password"] = passwordView.inputTextField.text?.data(using: .utf8)?.base64EncodedString()
+        req.params["username"] = username.data(using: .utf8)?.base64EncodedString()
+        req.params["password"] = password.data(using: .utf8)?.base64EncodedString()
         HttpClient.send(req: req) { [weak self] success, response in
             guard let self = self else { return }
             if let res = response.data {
                 if let token = res.access_token, let date = res.expires_in, token.count > 0 {
                     Logger.info("login success token:\(token)")
+                    let account = Account.init(res, username)
+                    AccountManager.shared.saveAccount(account)
                     self.toast("登录成功")
                 } else if let msg = res.msg, msg.count > 0 {
                     self.toast("\(msg)")
@@ -173,4 +176,10 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
         return v
     }()
     
+}
+
+extension Account {
+    convenience init(_ res: LoginResult, _ username: String) {
+        self.init(res.access_token, res.expires_in, username)
+    }
 }

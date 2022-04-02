@@ -45,5 +45,6 @@ TODO: Add long description of the pod here.
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'LLCommon'
   s.dependency 'LLNetwork'
+  s.dependency 'LLAccount'
   s.dependency 'SnapKit'
 end

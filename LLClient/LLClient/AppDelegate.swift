@@ -8,6 +8,7 @@
 import UIKit
 import LLMain
 import LLCommon
+import LLAccount
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Logger.register()
+        AccountManager.shared.loadAccounts()
         let window = UIWindow.init()
         window.rootViewController = LoginViewController.init()
         window.backgroundColor = .white
