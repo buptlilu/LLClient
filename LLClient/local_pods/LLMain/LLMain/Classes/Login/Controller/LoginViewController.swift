@@ -109,7 +109,7 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
     
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         if let v = textField.superview as? LoginInputView {
-            v.spaceView.backgroundColor = .orange
+            v.spaceView.backgroundColor = .theme
         }
     }
     
@@ -139,7 +139,7 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
     lazy var label: UILabel = {
         let l = UILabel.init()
         l.text = "请先登录"
-        l.textColor = .orange
+        l.textColor = .theme
         l.font = .boldSystemFont(ofSize: 20)
         l.sizeToFit()
         return l
@@ -167,7 +167,7 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
     lazy var loginBtn: UIButton = {
         let v = UIButton.init(type: .custom)
         v.clipsToBounds = true
-        v.setBackgroundImage(.imageWithColor(.orange), for: .normal)
+        v.setBackgroundImage(.imageWithColor(.theme), for: .normal)
         v.setTitle("登录", for: .normal)
         v.setTitleColor(.white, for: .normal)
         v.titleLabel?.font = .systemFont(ofSize: 16)

@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.register()
         AccountManager.shared.loadAccounts()
         let window = UIWindow.init()
-        window.rootViewController = LoginViewController.init()
+        window.rootViewController = ControllerManager.shared.rootViewController()
         window.backgroundColor = .white
         window.makeKeyAndVisible()
         self.window = window

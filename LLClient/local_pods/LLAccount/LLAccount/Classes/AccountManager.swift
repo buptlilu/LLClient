@@ -62,7 +62,7 @@ public class AccountManager: NSObject {
     }
     
     public func loadAccounts() {
-        Cache.shared.load(filePath: self.accountFilePath(), modelType: [Account].self) { success, models in
+        Cache.shared.loadSync(filePath: self.accountFilePath(), modelType: [Account].self) { success, models in
             if success, let models = models {
                 self.accounts.removeAll()
                 for model in models {

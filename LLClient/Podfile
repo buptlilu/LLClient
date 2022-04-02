@@ -10,6 +10,7 @@ target 'LLClient' do
   pod 'SwiftyBeaver'
   #5.5以上版本在iOS 12系统会有问题参考https://www.jianshu.com/p/b0bf3f7256cb
   pod 'Alamofire', '~> 5.4.4'
+  pod 'RDVTabBarController'
   pod 'SnapKit', '~> 5.0.0'
   pod 'Kingfisher', '~> 7.0'
   pod 'Toast-Swift', '~> 5.0.1'
