@@ -11,7 +11,7 @@ class ListViewController: RootBaseController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            let vc = UIViewController.init()
+            let vc = BaseController.init()
             vc.view.backgroundColor = .red
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -19,5 +19,6 @@ class ListViewController: RootBaseController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .orange
     }
 }

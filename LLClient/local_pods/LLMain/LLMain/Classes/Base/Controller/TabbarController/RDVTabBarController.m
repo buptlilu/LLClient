@@ -82,7 +82,8 @@
 
     [[self tabBar] setFrame:CGRectMake(0, tabBarStartingY, viewSize.width, tabBarHeight)];
     [[self contentView] setFrame:CGRectMake(0, 0, viewSize.width, contentViewHeight)];
-    [[[self selectedViewController] view] setFrame:[[self contentView] bounds]];
+    //这里不注释的话push控制器的时候控制器view大小受到影响,UINavigationController没问题
+    //[[[self selectedViewController] view] setFrame:[[self contentView] bounds]];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
