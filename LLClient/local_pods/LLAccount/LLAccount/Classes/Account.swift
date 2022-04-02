@@ -11,6 +11,7 @@ public class Account: NSObject, Codable {
     var username: String = ""
     var access_token: String = ""
     var expires_date: Double = 0
+    var login = true
     
     public init(_ token: String?, _ expires_in: Int?, _ name: String?) {
         super.init()

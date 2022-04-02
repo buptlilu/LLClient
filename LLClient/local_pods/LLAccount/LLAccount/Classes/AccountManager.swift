@@ -21,8 +21,14 @@ public class AccountManager: NSObject {
         return accounts
     }
     
-    public func topAccount() -> Account?{
+    public func currentAccount() -> Account?{
         if accounts.count > 0 {
+            for item in accounts {
+                if item.value.login {
+                    return item.value
+                }
+            }
+            
             return accounts.first?.value
         }
         
@@ -34,6 +40,11 @@ public class AccountManager: NSObject {
             return
         }
         
+        //只允许当前一个账号处于登录状态
+        for item in accounts {
+            item.value.login = false
+        }
+        
         accounts[account.username] = account
         
         var models = [Account].init()
@@ -41,6 +52,11 @@ public class AccountManager: NSObject {
             if account.value.isTokenValid() {
                 models.append(account.value)
             }
+        }
+        
+        //新登录的账号总在最前面
+        models.sorted { a, b in
+            return a.expires_date > b.expires_date
         }
         Cache.shared.save(filePath: self.accountFilePath(), models: models)
     }
@@ -73,7 +89,7 @@ public class AccountManager: NSObject {
             var index = 0
             for model in accounts {
                 index = index + 1
-                Logger.info("第\(index)个账号:username:\(model.key)  access_token:\(model.value.access_token)")
+                Logger.info("第\(index)个账号:username:\(model.key)  access_token:\(model.value.access_token)  登录状态:\(model.value.login)")
             }
         }
     }
