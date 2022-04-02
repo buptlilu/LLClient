@@ -46,9 +46,14 @@ public class ControllerManager : NSObject {
                 
                 }
                 tabBarItem.title = titles[index]
-                tabBarItem.badgeBackgroundColor = .white
+                tabBarItem.badgeBackgroundColor = .red
+                tabBarItem.badgeTextColor = .white
+                tabBarItem.badgeTextFont = .systemFont(ofSize: 9)
+                tabBarItem.badgePositionAdjustment = .init(horizontal: -12, vertical: 1)
                 tabBarItem.selectedTitleAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 11), NSAttributedString.Key.foregroundColor: UIColor.theme]
                 tabBarItem.unselectedTitleAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 11), NSAttributedString.Key.foregroundColor: UIColor.init(hex: 0x999999)]
+                tabBarItem.titlePositionAdjustment = .init(horizontal: 0, vertical: -5)
+                tabBarItem.imagePositionAdjustment = .init(horizontal: 0, vertical: 3)
                 index += 1
             }
         }

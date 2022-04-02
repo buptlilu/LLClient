@@ -20,5 +20,5 @@ public class Keys: NSObject {
     public static let Client_secret    = "ce9bf0c1796adf3f3136a5eb0c54c059"
     public static let Grant_type       = "authorization_code"
     
-    public static let kBottomBarHeight = 55.0
+    public static let kBottomBarHeight = 49.0
 }
