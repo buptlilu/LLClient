@@ -11,7 +11,8 @@ import LLCommon
 public class AccountManager: NSObject {
     public static var shared = AccountManager.init()
     
-    var accounts: [String: Account] = [:]
+    private var accounts: [String: Account] = [:]
+    private var currentUser: Account? = nil
     
     public override init() {
         super.init()
@@ -22,14 +23,12 @@ public class AccountManager: NSObject {
     }
     
     public func currentAccount() -> Account?{
-        if accounts.count > 0 {
-            for item in accounts {
-                if item.value.login {
-                    return item.value
-                }
+        if let user = currentUser {
+            if !user.isTokenValid() {
+                self.toast("当前用户token过期，请切换用户货重新登录")
             }
             
-            return accounts.first?.value
+            return user
         }
         
         return nil
@@ -70,8 +69,29 @@ public class AccountManager: NSObject {
                         self.accounts[model.username] = model
                     }
                 }
+                self.selectCurrentUser()
                 self.logAccounts()
             }
+        }
+    }
+    
+    private func selectCurrentUser() {
+        if accounts.count > 0 {
+            var validUsers = [Account]()
+            for item in accounts {
+                if item.value.isTokenValid() {
+                    validUsers.append(item.value)
+                }
+            }
+            
+            for user in validUsers {
+                if user.login {
+                    currentUser = user
+                    return
+                }
+            }
+            
+            currentUser = validUsers.first
         }
     }
     
