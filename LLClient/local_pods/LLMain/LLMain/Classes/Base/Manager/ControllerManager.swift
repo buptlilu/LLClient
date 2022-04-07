@@ -22,6 +22,12 @@ public class ControllerManager : NSObject {
         return LoginViewController.init()
     }
     
+    public func setUpRootViewController() {
+        if let window = UIApplication.shared.delegate?.window {
+            window?.rootViewController = rootViewController()
+        }
+    }
+    
     private func createTabbarVc() -> UIViewController? {
         let listVc = ListViewController.init()
         let hotVc = HotViewController.init()

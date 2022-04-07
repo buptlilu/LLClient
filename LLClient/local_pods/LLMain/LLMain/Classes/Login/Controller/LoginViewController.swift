@@ -89,6 +89,7 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
                     Logger.info("login success token:\(token)")
                     let account = Account.init(res, username)
                     AccountManager.shared.saveAccount(account)
+                    ControllerManager.shared.setUpRootViewController()
                     self.toast("登录成功")
                 } else if let msg = res.msg, msg.count > 0 {
                     self.toast("\(msg)")

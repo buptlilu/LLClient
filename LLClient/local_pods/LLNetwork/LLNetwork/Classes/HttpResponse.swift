@@ -20,7 +20,7 @@ open class HttpResponse: NSObject {
     }
 }
 
-open class HttpMiddleResponse<DataType: Codable>: HttpResponse {
+open class HttpJsonResponse<DataType: Codable>: HttpResponse {
     public var data: DataType?
     open override func parser(_ resData: Data) {
         do {

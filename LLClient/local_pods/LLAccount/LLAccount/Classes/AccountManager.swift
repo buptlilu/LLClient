@@ -58,6 +58,8 @@ public class AccountManager: NSObject {
             return a.expires_date > b.expires_date
         }
         Cache.shared.save(filePath: self.accountFilePath(), models: models)
+        
+        selectCurrentUser()
     }
     
     public func loadAccounts() {

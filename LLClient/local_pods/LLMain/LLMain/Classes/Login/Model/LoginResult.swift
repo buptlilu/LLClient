@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LoginResult: NSObject, Codable {
+class LoginResult: Codable {
     var access_token: String?
     var expires_in: Int?
     var code: Int?

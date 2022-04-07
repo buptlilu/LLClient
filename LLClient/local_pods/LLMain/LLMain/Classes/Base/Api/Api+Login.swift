@@ -10,7 +10,7 @@ import LLNetwork
 import LLCommon
 
 extension Api.login {
-    class Response: HttpMiddleResponse<LoginResult> {}
+    class Response: HttpJsonResponse<LoginResult> {}
     class Request: HttpRequest<Response>{
         override init() {
             super.init()

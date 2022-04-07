@@ -21,4 +21,7 @@ public class Keys: NSObject {
     public static let Grant_type       = "authorization_code"
     
     public static let kBottomBarHeight = 49.0
+    public static let kTopBarHeight    = 44.0
+    public static let kScreenWidth = UIScreen.main.bounds.size.width
+    public static let kScreenHeight = UIScreen.main.bounds.size.height
 }
