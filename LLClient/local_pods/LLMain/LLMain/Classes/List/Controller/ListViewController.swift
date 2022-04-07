@@ -38,10 +38,19 @@ class ListViewController: RootBaseController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell.init()
+        let cell = SectionCell.cellWithTableView(tableView)
         let section = data?[indexPath.row]
-        cell.textLabel?.text = section?.description
+        cell.label.text = section?.description
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
     lazy var tableView: UITableView = {

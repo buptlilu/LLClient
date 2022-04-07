@@ -7,15 +7,16 @@
 
 import Foundation
 import UIKit
+import LLCommon
 
 class BaseCell: UITableViewCell {
-    public class func cellWithTableView(_ tableView: UITableView)-> Self? {
+    public class func cellWithTableView(_ tableView: UITableView)-> Self {
         let identifier = NSStringFromClass(self)
         var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
         if cell == nil {
             cell = Self.self.init(style: .default, reuseIdentifier: identifier)
         }
-        return cell as? Self
+        return cell as! Self
     }
     
     required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -28,4 +29,7 @@ class BaseCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    lazy var arrowView = UIImageView.arrowView()
+    lazy var spaceView = UIView.spaceView()
 }

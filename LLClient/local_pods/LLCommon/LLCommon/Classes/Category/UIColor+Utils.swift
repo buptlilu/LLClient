@@ -12,6 +12,10 @@ extension UIColor {
         return .orange
     }
     
+    public class var titleColor: UIColor {
+        return .init(hex: 0x333333)
+    }
+    
     public convenience init(hex: UInt, alpha: CGFloat = 1.0) {
         self.init(red: CGFloat((hex & 0xFF0000) >> 16) / 255.0,
                   green: CGFloat((hex & 0x00FF00) >> 8) / 255.0,
