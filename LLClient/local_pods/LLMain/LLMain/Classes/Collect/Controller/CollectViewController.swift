@@ -38,9 +38,9 @@ class CollectViewController: RootBaseController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = SectionCell.cellWithTableView(tableView)
+        let cell = BoardCell.cellWithTableView(tableView)
         let board = data?[indexPath.row]
-        cell.label.text = board?.description
+        cell.board = board
         return cell
     }
     
