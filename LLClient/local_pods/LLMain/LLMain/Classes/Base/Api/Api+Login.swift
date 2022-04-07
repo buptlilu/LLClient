@@ -9,7 +9,7 @@ import Foundation
 import LLNetwork
 import LLCommon
 
-extension Api.login {
+extension Api.Login {
     class Response: HttpJsonResponse<LoginResult> {}
     class Request: HttpRequest<Response>{
         override init() {

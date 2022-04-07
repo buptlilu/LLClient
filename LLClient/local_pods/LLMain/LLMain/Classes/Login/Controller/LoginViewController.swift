@@ -79,7 +79,7 @@ public class LoginViewController: UIViewController, UITextFieldDelegate {
         usernameView.inputTextField.resignFirstResponder()
         passwordView.inputTextField.resignFirstResponder()
         
-        let req = Api.login.Request()
+        let req = Api.Login.Request()
         req.params["username"] = username.data(using: .utf8)?.base64EncodedString()
         req.params["password"] = password.data(using: .utf8)?.base64EncodedString()
         HttpClient.send(req: req) { [weak self] success, response in

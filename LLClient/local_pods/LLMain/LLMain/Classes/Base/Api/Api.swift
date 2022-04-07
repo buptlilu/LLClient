@@ -10,9 +10,11 @@ import LLNetwork
 import LLAccount
 
 public class Api {
-    public class login {}
+    public class Login {}
     
     public class List {}
+    
+    public class Collect {}
 }
 
 public class HttpBaseRequest<ResponseType: HttpResponse>: HttpRequest<ResponseType> {
