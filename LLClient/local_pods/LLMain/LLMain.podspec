@@ -47,4 +47,5 @@ TODO: Add long description of the pod here.
   s.dependency 'LLNetwork'
   s.dependency 'LLAccount'
   s.dependency 'SnapKit'
+  s.dependency 'MJRefresh'
 end
