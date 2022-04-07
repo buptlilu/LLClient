@@ -23,18 +23,20 @@ public class ControllerManager : NSObject {
     }
     
     private func createTabbarVc() -> UIViewController? {
-        let listVc = YDNavigationController.init(rootViewController: ListViewController.init())
-        let hotVc = YDNavigationController.init(rootViewController: HotViewController.init())
-        let collectVc = YDNavigationController.init(rootViewController: CollectViewController.init())
-        let meVc = YDNavigationController.init(rootViewController: MeViewController.init())
-        
-        let tabbarVc = RDVTabBarController.init()
-        tabbarVc.tabBar.setHeight(Keys.kBottomBarHeight)
-        tabbarVc.viewControllers = [listVc, hotVc, collectVc, meVc]
+        let listVc = ListViewController.init()
+        let hotVc = HotViewController.init()
+        let collectVc = CollectViewController.init()
+        let meVc = MeViewController.init()
         
         let imageNames = ["list", "hot", "collect", "me"]
         let titles = ["版面", "热点", "收藏", "我的"]
+        let vcs = [listVc, hotVc, collectVc, meVc]
         
+        let tabbarVc = RDVTabBarController.init()
+        tabbarVc.tabBar.setHeight(Keys.kBottomBarHeight)
+        tabbarVc.viewControllers = vcs.map({ vc in
+            navVc(vc: vc)
+        })
         var index = 0
         for item in tabbarVc.tabBar.items {
             if let tabBarItem = item as? RDVTabBarItem{
@@ -45,6 +47,7 @@ public class ControllerManager : NSObject {
                     tabBarItem.setFinishedSelectedImage(imageSelected, withFinishedUnselectedImage: imageNormal)
                 
                 }
+                vcs[index].title = titles[index]
                 tabBarItem.title = titles[index]
                 tabBarItem.badgeBackgroundColor = .red
                 tabBarItem.badgeTextColor = .white
@@ -66,6 +69,10 @@ public class ControllerManager : NSObject {
             make.left.right.top.equalToSuperview()
         }
         return tabbarVc
+    }
+    
+    private func navVc(vc: UIViewController) -> UIViewController {
+        return YDNavigationController.init(rootViewController: vc)
     }
     
     public static var shared = ControllerManager.init()

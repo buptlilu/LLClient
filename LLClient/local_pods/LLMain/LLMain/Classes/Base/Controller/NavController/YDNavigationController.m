@@ -9,7 +9,7 @@
 #import "YDNavigationController.h"
 #import "UIViewController+JTNavigationExtension.h"
 
-@interface YDNavigationController ()<UINavigationControllerDelegate,UIGestureRecognizerDelegate>
+@interface YDNavigationController ()
 @end
 
 @implementation YDNavigationController

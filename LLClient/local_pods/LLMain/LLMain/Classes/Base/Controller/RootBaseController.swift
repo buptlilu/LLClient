@@ -12,4 +12,9 @@ class RootBaseController: UIViewController {
         super.viewDidAppear(animated)
         self.rdv_tabBarController?.setTabBarHidden(false, animated: true)
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.title = self.title
+    }
 }
