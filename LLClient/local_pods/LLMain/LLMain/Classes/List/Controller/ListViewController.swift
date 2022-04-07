@@ -58,7 +58,7 @@ class ListViewController: RootBaseController, UITableViewDelegate, UITableViewDa
         v.separatorStyle = .none
         v.delegate = self
         v.dataSource = self
-        v.frame = .init(x: 0, y: 0, width: Keys.kScreenWidth, height: Keys.kScreenHeight - Keys.kBottomBarHeight - Keys.kTopBarHeight)
+        v.frame = .init(x: 0, y: 0, width: Keys.kScreenWidth, height: Keys.kScreenHeight - Keys.kBottomBarHeight)
         v.mj_header = MJRefreshNormalHeader.init(refreshingBlock: { [weak self] in
             guard let self = self else { return }
             self.loadData()

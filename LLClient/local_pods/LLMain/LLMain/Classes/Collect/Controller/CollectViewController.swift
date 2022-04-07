@@ -59,7 +59,7 @@ class CollectViewController: RootBaseController, UITableViewDelegate, UITableVie
     func addOrDeleteFavorite(cell: BoardCell) {
         if cell.likeBtn.isSelected {
             self.handleLikeCell = cell
-            let sheet = UIAlertController.init(title: "将\(cell.board?.description ?? "")版面从收藏夹移除?", message: "test", preferredStyle: .actionSheet)
+            let sheet = UIAlertController.init(title: "将\(cell.board?.description ?? "")版面从收藏夹移除?", message: nil, preferredStyle: .actionSheet)
             sheet.addAction(.init(title: "取消收藏", style: .destructive, handler: { [weak self] action in
                 guard let self = self else { return }
                 let req = Api.Collect.Delete.Request()
@@ -84,7 +84,7 @@ class CollectViewController: RootBaseController, UITableViewDelegate, UITableVie
         v.separatorStyle = .none
         v.delegate = self
         v.dataSource = self
-        v.frame = .init(x: 0, y: 0, width: Keys.kScreenWidth, height: Keys.kScreenHeight - Keys.kBottomBarHeight - Keys.kTopBarHeight)
+        v.frame = .init(x: 0, y: 0, width: Keys.kScreenWidth, height: Keys.kScreenHeight - Keys.kTopBarHeight)
         v.mj_header = MJRefreshNormalHeader.init(refreshingBlock: { [weak self] in
             guard let self = self else { return }
             self.loadData()
