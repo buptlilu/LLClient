@@ -18,4 +18,33 @@ extension Api.Collect {
             requestType = .get
         }
     }
+    
+    public class Delete{}
+    public class Add{}
+}
+
+extension Api.Collect.Delete {
+    class Response: HttpJsonResponse<FavoriteResult> {}
+    class Request: HttpBaseRequest<Response>{
+        override init() {
+            super.init()
+            url = Keys.BaseURL + "/favorite/delete/0.json"
+            params["dir"] = "0"
+            params["level"] = "0"
+            requestType = .post
+        }
+    }
+}
+
+extension Api.Collect.Add {
+    class Response: HttpJsonResponse<FavoriteResult> {}
+    class Request: HttpBaseRequest<Response>{
+        override init() {
+            super.init()
+            url = Keys.BaseURL + "/favorite/add/0.json"
+            params["dir"] = "0"
+            params["level"] = "0"
+            requestType = .post
+        }
+    }
 }

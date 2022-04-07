@@ -7,7 +7,12 @@
 
 import Foundation
 
+protocol BoardCellDelegate {
+    func addOrDeleteFavorite(cell: BoardCell)
+}
+
 class BoardCell: BaseCell {
+    public var delegate: BoardCellDelegate? = nil
     var board: Board? {
         didSet {
             label.text = board?.description
@@ -51,7 +56,7 @@ class BoardCell: BaseCell {
     }
     
     @objc func likeBtnClick() {
-        
+        self.delegate?.addOrDeleteFavorite(cell: self)
     }
     
     required init?(coder: NSCoder) {
