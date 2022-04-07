@@ -50,7 +50,10 @@ class ListViewController: RootBaseController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        let vc = BoardViewController.init()
+        vc.sectionName = data?[indexPath.row].name
+        vc.navigationItem.title = data?[indexPath.row].description
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     lazy var tableView: UITableView = {

@@ -11,9 +11,7 @@ import LLAccount
 
 public class Api {
     public class Login {}
-    
     public class List {}
-    
     public class Collect {}
 }
 

@@ -16,9 +16,18 @@ class BoardCell: BaseCell {
     var board: Board? {
         didSet {
             label.text = board?.description
-            arrowView.isHidden = board?.is_favorite ?? false
-            likeBtn.isHidden = !arrowView.isHidden
+            arrowView.isHidden = true
+            likeBtn.isHidden = false
             likeBtn.isSelected = board?.is_favorite ?? false
+        }
+    }
+    
+    var boardResult: BoardResult? {
+        didSet {
+            label.text = boardResult?.description
+            arrowView.isHidden = false
+            likeBtn.isHidden = true
+            likeBtn.isSelected = false
         }
     }
     

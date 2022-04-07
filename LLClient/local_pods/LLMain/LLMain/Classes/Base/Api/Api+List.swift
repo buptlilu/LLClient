@@ -18,4 +18,17 @@ extension Api.List {
             requestType = .get
         }
     }
+    
+    public class Board{}
+}
+
+extension Api.List.Board {
+    class Response: HttpJsonResponse<BoardResult> {}
+    class Request: HttpBaseRequest<Response>{
+        override init() {
+            super.init()
+            url = Keys.BaseURL + "/section"
+            requestType = .get
+        }
+    }
 }
