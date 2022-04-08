@@ -19,11 +19,10 @@ extension Api.Collect {
         }
     }
     
-    public class Delete{}
-    public class Add{}
+    public class Like{}
 }
 
-extension Api.Collect.Delete {
+extension Api.Collect.Like {
     class Response: HttpJsonResponse<FavoriteResult> {}
     class Request: HttpBaseRequest<Response>{
         override init() {
@@ -33,18 +32,20 @@ extension Api.Collect.Delete {
             params["level"] = "0"
             requestType = .post
         }
-    }
-}
-
-extension Api.Collect.Add {
-    class Response: HttpJsonResponse<FavoriteResult> {}
-    class Request: HttpBaseRequest<Response>{
-        override init() {
-            super.init()
-            url = Keys.BaseURL + "/favorite/add/0.json"
-            params["dir"] = "0"
-            params["level"] = "0"
-            requestType = .post
+        
+        var handleType: HandleType = .unlike {
+            didSet {
+                if handleType == .like {
+                    url = Keys.BaseURL + "/favorite/add/0.json"
+                } else {
+                    url = Keys.BaseURL + "/favorite/delete/0.json"
+                }
+            }
+        }
+        
+        enum HandleType: String {
+            case like = "like"
+            case unlike = "unlike"
         }
     }
 }

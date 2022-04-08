@@ -62,7 +62,7 @@ class CollectViewController: RootBaseController, UITableViewDelegate, UITableVie
             let sheet = UIAlertController.init(title: "将\(cell.board?.description ?? "")版面从收藏夹移除?", message: nil, preferredStyle: .actionSheet)
             sheet.addAction(.init(title: "取消收藏", style: .destructive, handler: { [weak self] action in
                 guard let self = self else { return }
-                let req = Api.Collect.Delete.Request()
+                let req = Api.Collect.Like.Request()
                 req.params["name"] = self.handleLikeCell?.board?.name ?? ""
                 HttpClient.send(req: req) { success, res in
                     if success {

@@ -10,9 +10,12 @@ import LLCommon
 import MJRefresh
 import LLNetwork
  
-class BoardViewController: NonBaseController, UITableViewDelegate, UITableViewDataSource {
+class BoardViewController: NonBaseController, UITableViewDelegate, UITableViewDataSource, BoardCellDelegate {
+    
+    var handleLikeCell: BoardCell?
     var sectionName: String?
-    var boards: [Board]?
+    var boards: [Board]? = []
+    var sub_sections: [String]? = []
     var subSectionBoardResults: [BoardResult]? = []
     //收藏夹
     var favorites: [Board]?
@@ -21,8 +24,12 @@ class BoardViewController: NonBaseController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         self.view.addSubview(tableView)
-        
-        loadData()
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        if (boards?.count ?? 0) <= 0 {
+            loadData()
+        }
     }
     
     func loadData() {
@@ -41,8 +48,10 @@ class BoardViewController: NonBaseController, UITableViewDelegate, UITableViewDa
         HttpClient.send(req: req) { success, res in
             if success {
                 self.boards = res.data?.board
+                self.sub_sections?.removeAll()
                 if let subs = res.data?.sub_section, subs.count > 0 {
                     self.subSectionBoardResults?.removeAll()
+                    self.sub_sections = subs
                     for sub in subs {
                         group.enter()
                         let subReq = Api.List.Board.Request()
@@ -67,6 +76,7 @@ class BoardViewController: NonBaseController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    //MARK: tableView delegate
     func numberOfSections(in tableView: UITableView) -> Int {
         if (subSectionBoardResults?.count ?? 0) > 0 {
             return 2
@@ -99,6 +109,7 @@ class BoardViewController: NonBaseController, UITableViewDelegate, UITableViewDa
                 }
             }
         }
+        cell.delegate = self
         
         return cell
     }
@@ -109,7 +120,40 @@ class BoardViewController: NonBaseController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        if (subSectionBoardResults?.count ?? 0) > 0 && indexPath.section == 0 {
+            let boardResult = subSectionBoardResults?[indexPath.row]
+            let sub_section = self.sub_sections?[indexPath.row]
+            let vc = BoardViewController.init()
+            vc.sectionName = sub_section
+            vc.boards = boardResult?.board
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            
+        }
+    }
+    
+    //MARK: cell delegate
+    func addOrDeleteFavorite(cell: BoardCell) {
+        self.handleLikeCell = cell
+        let titleStr = cell.likeBtn.isSelected ? "从收藏夹移除" : "加入收藏夹"
+        let cancelStr = cell.likeBtn.isSelected ? "取消收藏" : "添加收藏"
+        let sheet = UIAlertController.init(title: "将\(cell.board?.description ?? "")版面\(titleStr)?", message: nil, preferredStyle: .actionSheet)
+        sheet.addAction(.init(title: cancelStr, style: .destructive, handler: { [weak self] action in
+            guard let self = self else { return }
+            let req = Api.Collect.Like.Request()
+            req.handleType = cell.likeBtn.isSelected ? .unlike : .like
+            req.params["name"] = self.handleLikeCell?.board?.name ?? ""
+            HttpClient.send(req: req) { success, res in
+                if success {
+                    self.toast("\(cancelStr)成功")
+                    cell.likeBtn.isSelected = !cell.likeBtn.isSelected
+                } else {
+                    self.toast("\(cancelStr)失败")
+                }
+            }
+        }))
+        sheet.addAction(.init(title: "取消", style: .cancel))
+        self.present(sheet, animated: true)
     }
     
     lazy var tableView: UITableView = {
@@ -117,7 +161,6 @@ class BoardViewController: NonBaseController, UITableViewDelegate, UITableViewDa
         v.separatorStyle = .none
         v.delegate = self
         v.dataSource = self
-        v.frame = .init(x: 0, y: 0, width: Keys.kScreenWidth, height: Keys.kScreenHeight - Keys.kBottomBarHeight)
         v.mj_header = MJRefreshNormalHeader.init(refreshingBlock: { [weak self] in
             guard let self = self else { return }
             self.loadData()
