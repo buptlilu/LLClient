@@ -15,4 +15,8 @@ open class BaseManager: NSObject {
     public static func shared() -> Self {
         return Self()
     }
+    
+    open func filePath() -> URL? {
+        return nil
+    }
 }

@@ -50,4 +50,11 @@ class CollectManager: BaseManager {
         sheet.addAction(.init(title: "取消", style: .cancel))
         rootVc.present(sheet, animated: true)
     }
+    
+    override func filePath() -> URL? {
+        var path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        path?.appendPathComponent("collects")
+        Logger.info("collect path:\(path?.path)")
+        return path
+    }
 }
