@@ -8,7 +8,9 @@
 import Foundation
 import LLCommon
 
-public class AccountManager: BaseManager {
+public class AccountManager: NSObject {
+    public static var shared = AccountManager()
+    
     private var accounts: [String: Account] = [:]
     private var currentUser: Account? = nil
     
@@ -51,13 +53,13 @@ public class AccountManager: BaseManager {
         models.sorted { a, b in
             return a.expires_date > b.expires_date
         }
-        CacheManager.shared().save(filePath: self.filePath(), models: models)
+        CacheManager.shared.save(filePath: self.filePath(), models: models)
         
         selectCurrentUser()
     }
     
     public func loadAccounts() {
-        CacheManager.shared().loadSync(filePath: self.filePath(), modelType: [Account].self) { success, models in
+        CacheManager.shared.loadSync(filePath: self.filePath(), modelType: [Account].self) { success, models in
             if success, let models = models {
                 self.accounts.removeAll()
                 for model in models {
@@ -91,7 +93,7 @@ public class AccountManager: BaseManager {
         }
     }
 
-    public override func filePath() -> URL? {
+    private func filePath() -> URL? {
         //file:///var/mobile/Containers/Data/Application/DFD879D7-31D4-40E2-A224-6D3ADAAB2A1E/Documents/accounts
         var path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         path?.appendPathComponent("accounts")

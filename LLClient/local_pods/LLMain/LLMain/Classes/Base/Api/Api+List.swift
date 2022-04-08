@@ -20,6 +20,7 @@ extension Api.List {
     }
     
     public class Board{}
+    public class BoardArticle{}
 }
 
 extension Api.List.Board {
@@ -29,6 +30,19 @@ extension Api.List.Board {
             super.init()
             url = Keys.BaseURL + "/section"
             requestType = .get
+        }
+    }
+}
+
+extension Api.List.BoardArticle {
+    class Response: HttpJsonResponse<BoardArticleResult> {}
+    class Request: HttpBaseRequest<Response>{
+        override init() {
+            super.init()
+            url = Keys.BaseURL + "/board"
+            requestType = .get
+            params["mode"] = 2
+            params["count"] = 30
         }
     }
 }

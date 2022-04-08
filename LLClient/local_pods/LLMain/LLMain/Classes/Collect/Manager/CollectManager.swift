@@ -9,7 +9,9 @@ import Foundation
 import LLNetwork
 import LLCommon
 
-class CollectManager: BaseManager {
+class CollectManager: NSObject {
+    public static var shared = CollectManager()
+    
     private var data: [Board]?
     
     public func loadCollectData(completeBlock: (([Board]?) ->Void)? = nil) {
@@ -54,17 +56,17 @@ class CollectManager: BaseManager {
     //MARK: todo cache
     fileprivate func cacheCollect() {
         if let cacheData = data {
-            CacheManager.shared().save(filePath: self.filePath(), models: cacheData)
+            CacheManager.shared.save(filePath: self.filePath(), models: cacheData)
         }
     }
     
     fileprivate func loadCacheCollect() {
-        CacheManager.shared().load(filePath: self.filePath(), modelType: [Board].self) { success, models in
+        CacheManager.shared.load(filePath: self.filePath(), modelType: [Board].self) { success, models in
             self.data = models
         }
     }
     
-    override func filePath() -> URL? {
+    func filePath() -> URL? {
         var path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         path?.appendPathComponent("collects")
         Logger.info("collect path:\(path?.path)")

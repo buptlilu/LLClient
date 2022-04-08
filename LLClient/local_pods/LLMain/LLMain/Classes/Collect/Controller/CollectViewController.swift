@@ -11,7 +11,7 @@ import MJRefresh
 import LLNetwork
 
 class CollectViewController: RootBaseController, UITableViewDelegate, UITableViewDataSource, BoardCellDelegate {
-    var data: [Board]? = []
+    var boards: [Board]? = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,8 +26,8 @@ class CollectViewController: RootBaseController, UITableViewDelegate, UITableVie
     }
     
     func loadCacheData() {
-        if let collectData = CollectManager.shared().collectData(), collectData.count > 0 {
-            data = collectData
+        if let collectData = CollectManager.shared.collectData(), collectData.count > 0 {
+            boards = collectData
             tableView.reloadData()
         } else {
             loadData()
@@ -35,8 +35,8 @@ class CollectViewController: RootBaseController, UITableViewDelegate, UITableVie
     }
     
     func loadData() {
-        CollectManager.shared().loadCollectData { newData in
-            self.data = newData
+        CollectManager.shared.loadCollectData { newData in
+            self.boards = newData
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
         }
@@ -44,12 +44,12 @@ class CollectViewController: RootBaseController, UITableViewDelegate, UITableVie
     
     //MARK: tableView delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data?.count ?? 0
+        return boards?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BoardCell.cellWithTableView(tableView)
-        let board = data?[indexPath.row]
+        let board = boards?[indexPath.row]
         cell.board = board
         cell.delegate = self
         return cell
@@ -61,13 +61,17 @@ class CollectViewController: RootBaseController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        let vc = BoardArticleViewController.init()
+        let board = boards?[indexPath.row]
+        vc.boardName = board?.name ?? ""
+        vc.navigationItem.title = board?.description
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: board delegate
     func addOrDeleteFavorite(cell: BoardCell) {
         if cell.likeBtn.isSelected {
-            CollectManager.shared().collectHandle(rootVc: self, handleType: .unlike, board: cell.board) { [weak self] success in
+            CollectManager.shared.collectHandle(rootVc: self, handleType: .unlike, board: cell.board) { [weak self] success in
                 guard let self = self else { return }
                 if success {
                     self.loadCacheData()

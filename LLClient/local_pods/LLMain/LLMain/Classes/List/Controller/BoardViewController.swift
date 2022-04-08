@@ -128,14 +128,18 @@ class BoardViewController: NonBaseController, UITableViewDelegate, UITableViewDa
             vc.boards = boardResult?.board
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
-            
+            let vc = BoardArticleViewController.init()
+            let board = boards?[indexPath.row]
+            vc.boardName = board?.name ?? ""
+            vc.navigationItem.title = board?.description
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
     //MARK: cell delegate
     func addOrDeleteFavorite(cell: BoardCell) {
         let type: Api.Collect.Like.HandleType = cell.likeBtn.isSelected ? .unlike: .like
-        CollectManager.shared().collectHandle(rootVc: self, handleType: type, board: cell.board) { [weak self] success in
+        CollectManager.shared.collectHandle(rootVc: self, handleType: type, board: cell.board) { [weak self] success in
             guard let self = self else { return }
             if success {
                 cell.likeBtn.isSelected = !cell.likeBtn.isSelected

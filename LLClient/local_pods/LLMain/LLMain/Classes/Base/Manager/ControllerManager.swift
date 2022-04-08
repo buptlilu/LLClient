@@ -11,9 +11,11 @@ import LLCommon
 import CoreData
 import UIKit
 
-public class ControllerManager : BaseManager {
+public class ControllerManager : NSObject {
+    public static var shared = ControllerManager()
+    
     public func rootViewController() -> UIViewController? {
-        if let user = AccountManager.shared().currentAccount() {
+        if let user = AccountManager.shared.currentAccount() {
             Logger.info("已登录 当前账号:\(user.username)")
             return createTabbarVc()
         }

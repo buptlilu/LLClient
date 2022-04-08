@@ -7,7 +7,9 @@
 
 import Foundation
 
-public class CacheManager: BaseManager {
+public class CacheManager: NSObject {
+    public static var shared = CacheManager()
+    
     public func save<ModelType: Codable>(filePath: URL?, models: ModelType, completeBlock: ((Bool)->Void)? = nil) {
         DispatchQueue.global().async {
             if let path = filePath  {
