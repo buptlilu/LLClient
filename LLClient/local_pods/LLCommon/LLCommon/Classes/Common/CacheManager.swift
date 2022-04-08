@@ -1,5 +1,5 @@
 //
-//  Cache.swift
+//  CacheManager.swift
 //  LLCommon
 //
 //  Created by lilu on 2022/4/2.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Cache: NSObject {
+public class CacheManager: BaseManager {
     public func save<ModelType: Codable>(filePath: URL?, models: ModelType, completeBlock: ((Bool)->Void)? = nil) {
         DispatchQueue.global().async {
             if let path = filePath  {
@@ -56,6 +56,4 @@ public class Cache: NSObject {
             }
         }
     }
-    
-    public static var shared = Cache()
 }

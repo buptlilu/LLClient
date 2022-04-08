@@ -11,9 +11,9 @@ import LLCommon
 import CoreData
 import UIKit
 
-public class ControllerManager : NSObject {
+public class ControllerManager : BaseManager {
     public func rootViewController() -> UIViewController? {
-        if let user = AccountManager.shared.currentAccount() {
+        if let user = AccountManager.shared().currentAccount() {
             Logger.info("已登录 当前账号:\(user.username)")
             return createTabbarVc()
         }
@@ -80,6 +80,4 @@ public class ControllerManager : NSObject {
     private func navVc(vc: UIViewController) -> UIViewController {
         return YDNavigationController.init(rootViewController: vc)
     }
-    
-    public static var shared = ControllerManager.init()
 }

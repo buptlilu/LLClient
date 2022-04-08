@@ -8,15 +8,9 @@
 import Foundation
 import LLCommon
 
-public class AccountManager: NSObject {
-    public static var shared = AccountManager.init()
-    
+public class AccountManager: BaseManager {
     private var accounts: [String: Account] = [:]
     private var currentUser: Account? = nil
-    
-    public override init() {
-        super.init()
-    }
     
     public func allAccounts() -> [String: Account]{
         return accounts
@@ -57,13 +51,13 @@ public class AccountManager: NSObject {
         models.sorted { a, b in
             return a.expires_date > b.expires_date
         }
-        Cache.shared.save(filePath: self.accountFilePath(), models: models)
+        CacheManager.shared().save(filePath: self.accountFilePath(), models: models)
         
         selectCurrentUser()
     }
     
     public func loadAccounts() {
-        Cache.shared.loadSync(filePath: self.accountFilePath(), modelType: [Account].self) { success, models in
+        CacheManager.shared().loadSync(filePath: self.accountFilePath(), modelType: [Account].self) { success, models in
             if success, let models = models {
                 self.accounts.removeAll()
                 for model in models {

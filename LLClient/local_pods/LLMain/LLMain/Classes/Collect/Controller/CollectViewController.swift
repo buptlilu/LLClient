@@ -11,24 +11,33 @@ import MJRefresh
 import LLNetwork
 
 class CollectViewController: RootBaseController, UITableViewDelegate, UITableViewDataSource, BoardCellDelegate {
-    var data: [Board]?
-    var handleLikeCell: BoardCell?
+    var data: [Board]? = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadCacheData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.addSubview(tableView)
-        
-        loadData()
+    }
+    
+    func loadCacheData() {
+        if let collectData = CollectManager.shared().collectData(), collectData.count > 0 {
+            data = collectData
+            tableView.reloadData()
+        } else {
+            loadData()
+        }
     }
     
     func loadData() {
-        let req = Api.Collect.Request()
-        HttpClient.send(req: req) { success, res in
-            if success {
-                self.data = res.data?.board
-                self.tableView.reloadData()
-            }
+        CollectManager.shared().loadCollectData { newData in
+            self.data = newData
+            self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
         }
     }
@@ -58,24 +67,12 @@ class CollectViewController: RootBaseController, UITableViewDelegate, UITableVie
     //MARK: board delegate
     func addOrDeleteFavorite(cell: BoardCell) {
         if cell.likeBtn.isSelected {
-            self.handleLikeCell = cell
-            let sheet = UIAlertController.init(title: "将\(cell.board?.description ?? "")版面从收藏夹移除?", message: nil, preferredStyle: .actionSheet)
-            sheet.addAction(.init(title: "取消收藏", style: .destructive, handler: { [weak self] action in
+            CollectManager.shared().collectHandle(rootVc: self, handleType: .unlike, board: cell.board) { [weak self] success in
                 guard let self = self else { return }
-                let req = Api.Collect.Like.Request()
-                req.params["name"] = self.handleLikeCell?.board?.name ?? ""
-                HttpClient.send(req: req) { success, res in
-                    if success {
-                        self.toast("取消收藏成功")
-                        self.data = res.data?.board
-                        self.tableView.reloadData()
-                    } else {
-                        self.toast("取消收藏失败")
-                    }
+                if success {
+                    self.loadCacheData()
                 }
-            }))
-            sheet.addAction(.init(title: "取消", style: .cancel))
-            self.present(sheet, animated: true)
+            }
         }
     }
     

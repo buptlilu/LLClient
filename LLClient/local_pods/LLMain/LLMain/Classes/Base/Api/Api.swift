@@ -18,7 +18,7 @@ public class Api {
 public class HttpBaseRequest<ResponseType: HttpResponse>: HttpRequest<ResponseType> {
     public override init() {
         super.init()
-        if let user = AccountManager.shared.currentAccount() {
+        if let user = AccountManager.shared().currentAccount() {
             params["oauth_token"] = user.access_token
         }
     }

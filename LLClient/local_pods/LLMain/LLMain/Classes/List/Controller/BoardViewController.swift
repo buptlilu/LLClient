@@ -134,26 +134,13 @@ class BoardViewController: NonBaseController, UITableViewDelegate, UITableViewDa
     
     //MARK: cell delegate
     func addOrDeleteFavorite(cell: BoardCell) {
-        self.handleLikeCell = cell
-        let titleStr = cell.likeBtn.isSelected ? "从收藏夹移除" : "加入收藏夹"
-        let cancelStr = cell.likeBtn.isSelected ? "取消收藏" : "添加收藏"
-        let sheet = UIAlertController.init(title: "将\(cell.board?.description ?? "")版面\(titleStr)?", message: nil, preferredStyle: .actionSheet)
-        sheet.addAction(.init(title: cancelStr, style: .destructive, handler: { [weak self] action in
+        let type: Api.Collect.Like.HandleType = cell.likeBtn.isSelected ? .unlike: .like
+        CollectManager.shared().collectHandle(rootVc: self, handleType: type, board: cell.board) { [weak self] success in
             guard let self = self else { return }
-            let req = Api.Collect.Like.Request()
-            req.handleType = cell.likeBtn.isSelected ? .unlike : .like
-            req.params["name"] = self.handleLikeCell?.board?.name ?? ""
-            HttpClient.send(req: req) { success, res in
-                if success {
-                    self.toast("\(cancelStr)成功")
-                    cell.likeBtn.isSelected = !cell.likeBtn.isSelected
-                } else {
-                    self.toast("\(cancelStr)失败")
-                }
+            if success {
+                cell.likeBtn.isSelected = !cell.likeBtn.isSelected
             }
-        }))
-        sheet.addAction(.init(title: "取消", style: .cancel))
-        self.present(sheet, animated: true)
+        }
     }
     
     lazy var tableView: UITableView = {

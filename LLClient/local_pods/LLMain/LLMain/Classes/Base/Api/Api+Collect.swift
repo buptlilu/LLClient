@@ -23,6 +23,11 @@ extension Api.Collect {
 }
 
 extension Api.Collect.Like {
+    enum HandleType: String {
+        case like = "like"
+        case unlike = "unlike"
+    }
+    
     class Response: HttpJsonResponse<FavoriteResult> {}
     class Request: HttpBaseRequest<Response>{
         override init() {
@@ -41,11 +46,6 @@ extension Api.Collect.Like {
                     url = Keys.BaseURL + "/favorite/delete/0.json"
                 }
             }
-        }
-        
-        enum HandleType: String {
-            case like = "like"
-            case unlike = "unlike"
         }
     }
 }
