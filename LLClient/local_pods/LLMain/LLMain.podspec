@@ -48,4 +48,5 @@ TODO: Add long description of the pod here.
   s.dependency 'LLAccount'
   s.dependency 'SnapKit'
   s.dependency 'MJRefresh'
+  s.dependency 'Kingfisher'
 end

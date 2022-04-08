@@ -40,11 +40,13 @@ class BoardArticleViewController: NonBaseController, UITableViewDelegate, UITabl
     
     //MARK: tableView delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return data?.article?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell.init()
+        let cell = BoardArticleCell.cellWithTableView(tableView)
+        cell.updateData(article: data?.article?[indexPath.row])
+        return cell
     }
     
     

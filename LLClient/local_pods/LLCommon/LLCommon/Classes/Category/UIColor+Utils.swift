@@ -8,6 +8,14 @@
 import UIKit
 
 extension UIColor {
+    public class var maleNameColor: UIColor {
+        return .blue
+    }
+    
+    public class var femaleNameColor: UIColor {
+        return .init(hex: 0xFF8AD8)
+    }
+    
     public class var theme: UIColor {
         return .orange
     }
