@@ -51,6 +51,19 @@ class CollectManager: BaseManager {
         rootVc.present(sheet, animated: true)
     }
     
+    //MARK: todo cache
+    fileprivate func cacheCollect() {
+        if let cacheData = data {
+            CacheManager.shared().save(filePath: self.filePath(), models: cacheData)
+        }
+    }
+    
+    fileprivate func loadCacheCollect() {
+        CacheManager.shared().load(filePath: self.filePath(), modelType: [Board].self) { success, models in
+            self.data = models
+        }
+    }
+    
     override func filePath() -> URL? {
         var path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         path?.appendPathComponent("collects")
